@@ -7,10 +7,10 @@ public class ChristmasLetter {
     private String name;
     private String address;
 
-    private List<String> wishes;
+    private List<Wish> wishes;
 
     //Constructor
-    public ChristmasLetter(String name, String address, List<String> wishes) {
+    public ChristmasLetter(String name, String address, List<Wish> wishes) {
         this.name = name;
         this.address = address;
         this.wishes = wishes;
@@ -33,11 +33,11 @@ public class ChristmasLetter {
         this.address = address;
     }
 
-    public List<String> getWishes() {
+    public List<Wish> getWishes() {
         return wishes;
     }
 
-    public void setWishes(List<String> wishes) {
+    public void setWishes(List<Wish> wishes) {
         this.wishes = wishes;
     }
 
@@ -62,17 +62,17 @@ public class ChristmasLetter {
 
     }
 
-    public Map<String, Integer> wishesCount(){
-        Map<String, Integer> counts = new HashMap<>();
-        for (String s : wishes){
-            int count  = counts.getOrDefault(s, 0);
-            counts.put(s, count +1);
+    public Map<Wish, Integer> wishesCount(){
+        Map<Wish, Integer> counts = new HashMap<>();
+        for (Wish s : wishes){
+            counts.putIfAbsent(s, 0);
+           counts.put(s, counts.get(s) +1);
         }
         return counts;
     }
 
-    public Set<String> removeDuplicates(){
-        Set<String> uniqueWishes = new HashSet<>(wishes);
+    public Set<Wish> removeDuplicates(){
+        Set<Wish> uniqueWishes = new HashSet<>(wishes);
         return uniqueWishes;
     }
 

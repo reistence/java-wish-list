@@ -10,7 +10,7 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
 
-        List<String> wishlist = new ArrayList<String>();
+        List<Wish> wishlist = new ArrayList<Wish>();
 
         boolean exit = false;
         System.out.println("What's your name?: ");
@@ -19,7 +19,9 @@ public class Main {
         String address = scan.nextLine();
         System.out.println("Insert a new wish into the list: ");
         String wish = scan.nextLine();
-        wishlist.add(wish);
+        System.out.println("Insert the addressee of the wish: ");
+        String addressee = scan.nextLine();
+        wishlist.add(new Wish(wish, addressee));
         do {
 
             System.out.println("Do you want to insert another wish? (y/n)");
@@ -28,13 +30,15 @@ public class Main {
             if (answer.equals("y")){
                 System.out.println("Insert a new wish into the list: ");
                 String additionalWish = scan.nextLine();
-                wishlist.add(additionalWish);
+                System.out.println("Insert the addressee of the wish: ");
+                String additionalAddressee = scan.nextLine();
+                wishlist.add(new Wish(additionalWish, additionalAddressee));
                 System.out.println("You have inserted " + wishlist.size() + " wishes");
             } else if (answer.equals("n")){
                 exit = true;
-                Collections.sort(wishlist);
+               /* Collections.sort(wishlist);*/
                 System.out.println("This is your wishlist:");
-                for(String item : wishlist) {
+                for(Wish item : wishlist) {
                     System.out.println("- " + item);
                 }
             }
